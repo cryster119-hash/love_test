@@ -152,12 +152,3 @@ if submitted:
             </p>
             """, unsafe_allow_html=True)
         
-        # 버튼 중앙 배치를 위한 컬럼 사용
-        _, btn_col, _ = st.columns([1, 2, 1])
-        with btn_col:
-            st.link_button("🍬 복채 500원 보내기 (카카오페이)", link_kakaopay, use_container_width=True)
-            st.markdown("""
-                <p style='text-align: center; font-size: 0.8rem; color: gray; margin-top: 10px;'>
-                    복채를 내면 2026년 운이 +100% 상승합니다 (아마도..)
-                </p>
-                """, unsafe_allow_html=True)

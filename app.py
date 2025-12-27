@@ -141,14 +141,5 @@ if submitted:
         st.write("")
         st.write("---")
         
-        # 제목 중앙 정렬
-        st.markdown("<h3 style='text-align: center;'>🧧 신령님께 드리는 소액 복채</h3>", unsafe_allow_html=True)
-        
-        # 설명 문구 중앙 정렬
-        st.markdown("""
-            <p style='text-align: center; color: gray;'>
-                운세가 맘에 드셨나요? <br> 
-                주말 반납하고 앱 만든 직장인에게 카페인을 선물해주세요! ☕
-            </p>
-            """, unsafe_allow_html=True)
+      
         

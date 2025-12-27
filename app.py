@@ -123,8 +123,8 @@ if submitted:
         
         with col1:
             st.link_button("내 MBTI와 딱 맞는 사람은 어디있을까?", link_lucky_item, use_container_width=True)
-            st.caption("▲ 지니고 다니면 운 상승")
+            st.caption("▲ 평생 나의 짝꿍 찾기")
             
         with col2:
             st.link_button("에겐 vs 테토, 내 연애 스타일은?", link_dating_app, use_container_width=True)
-            st.caption("▲ 올해는 놓치지 마세요")
+            st.caption("▲ 나도 모르는 내 연애성향 확인하기")

@@ -4,21 +4,23 @@ import hashlib
 import datetime
 
 # --------------------------------------------------------------------------
-# [설정 구역]
+# [설정 구역] - 여기서 링크를 관리하세요
 # --------------------------------------------------------------------------
 page_title = "2026년 신년 연애운"
-main_title = "2026년(병오년) 나의 연애운세"
+main_title = "2026년(을사년) 나의 연애운세"
 sub_title = "이름과 생년월일로 보는 나의 내년 로맨스"
 
-# 👇 사장님 수익화 링크
+# 👇 수익화 링크 (텐핑 등)
 link_lucky_item = "https://iryan.kr/t74qtfvomr" 
 link_dating_app = "https://iryan.kr/t74qtfwyxi"
-# 🎁 카카오페이 복채 링크 (추가됨)
+
+# 🧧 카카오페이 복채 링크
 link_kakaopay = "https://qr.kakaopay.com/Ej80O3SQW" 
 # --------------------------------------------------------------------------
 
 st.set_page_config(page_title=page_title, page_icon="🔮", layout="centered")
 
+# 제목 섹션
 st.title(main_title)
 st.write(sub_title)
 st.write("---")
@@ -28,6 +30,7 @@ with st.form("fortune_form"):
     st.write("### 📜 사주 정보를 입력하세요")
     name = st.text_input("이름 (실명)", placeholder="예: 홍길동")
     
+    # 날짜 범위 설정 (1950년 ~ 오늘)
     min_date = datetime.date(1950, 1, 1)
     max_date = datetime.date.today()
     default_date = datetime.date(1995, 1, 1)
@@ -44,7 +47,7 @@ with st.form("fortune_form"):
     st.write("")
     submitted = st.form_submit_button("2026년 운세 확인하기 (클릭)", type="primary", use_container_width=True)
 
-# 2. 운세 로직
+# 2. 운세 로직 (해시 함수 사용 - 같은 입력엔 항상 같은 결과)
 def get_fortune_index(name, date):
     unique_string = name + str(date)
     hash_obj = hashlib.md5(unique_string.encode())
@@ -118,6 +121,7 @@ if submitted:
         
         st.write("---")
         
+        # 수익화 버튼 섹션
         st.subheader("👇 당신의 운세를 더 좋게 만들려면?")
         
         col1, col2 = st.columns(2)
@@ -131,16 +135,29 @@ if submitted:
             st.caption("▲ 나도 모르는 내 연애성향 확인하기")
 
         # ------------------------------------------------------------------
-        # 💰 [새로 추가된 복채 구역]
+        # 🧧 복채 구역 (중앙 정렬 및 HTML 적용)
         # ------------------------------------------------------------------
         st.write("")
         st.write("")
         st.write("---")
-        st.markdown("<h3 style='text-align: center;'>🧧 신령님께 드리는 소액 복채</h3>", unsafe_allow_status=True)
-        st.markdown("<p style='text-align: center; color: gray;'>운세가 맘에 드셨나요? <br> 주말 반납하고 앱 만든 직장인에게 카페인을 선물해주세요! ☕</p>", unsafe_allow_status=True)
         
-        # 중앙 정렬을 위한 컬럼 배치
+        # 제목 중앙 정렬
+        st.markdown("<h3 style='text-align: center;'>🧧 신령님께 드리는 소액 복채</h3>", unsafe_allow_html=True)
+        
+        # 설명 문구 중앙 정렬
+        st.markdown("""
+            <p style='text-align: center; color: gray;'>
+                운세가 맘에 드셨나요? <br> 
+                주말 반납하고 앱 만든 직장인에게 카페인을 선물해주세요! ☕
+            </p>
+            """, unsafe_allow_html=True)
+        
+        # 버튼 중앙 배치를 위한 컬럼 사용
         _, btn_col, _ = st.columns([1, 2, 1])
         with btn_col:
             st.link_button("🍬 복채 500원 보내기 (카카오페이)", link_kakaopay, use_container_width=True)
-            st.caption("<p style='text-align: center;'>복채를 내면 2026년 운이 +100% 상승합니다 (아마도..)</p>", unsafe_allow_status=True)
+            st.markdown("""
+                <p style='text-align: center; font-size: 0.8rem; color: gray; margin-top: 10px;'>
+                    복채를 내면 2026년 운이 +100% 상승합니다 (아마도..)
+                </p>
+                """, unsafe_allow_html=True)

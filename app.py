@@ -11,8 +11,8 @@ main_title = "🐍 2026년(을사년) 나의 연애운세"
 sub_title = "이름과 생년월일로 보는 나의 내년 로맨스"
 
 # 👇 사장님 수익화 링크
-link_dating_app = "https://www.google.com" 
-link_lucky_item = "https://www.naver.com" 
+link_lucky_item = "https://iryan.kr/t74qtfvomr" 
+link_dating_app = "https://iryan.kr/t74qtfwyxi"
 # --------------------------------------------------------------------------
 
 st.set_page_config(page_title=page_title, page_icon="🔮", layout="centered")
@@ -122,9 +122,9 @@ if submitted:
         col1, col2 = st.columns(2)
         
         with col1:
-            st.link_button("🎁 내 행운의 아이템 보기", link_lucky_item, use_container_width=True)
+            st.link_button("내 MBTI와 딱 맞는 사람은 어디있을까?", link_lucky_item, use_container_width=True)
             st.caption("▲ 지니고 다니면 운 상승")
             
         with col2:
-            st.link_button("👩‍❤️‍👨 검증된 인연 만나러 가기", link_dating_app, use_container_width=True)
+            st.link_button("에겐 vs 테토, 내 연애 스타일은?", link_dating_app, use_container_width=True)
             st.caption("▲ 올해는 놓치지 마세요")

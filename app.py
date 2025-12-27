@@ -1,7 +1,7 @@
 import streamlit as st
 import time
 import hashlib
-import datetime # 날짜 계산을 위한 도구 추가
+import datetime
 
 # --------------------------------------------------------------------------
 # [설정 구역]
@@ -13,6 +13,8 @@ sub_title = "이름과 생년월일로 보는 나의 내년 로맨스"
 # 👇 사장님 수익화 링크
 link_lucky_item = "https://iryan.kr/t74qtfvomr" 
 link_dating_app = "https://iryan.kr/t74qtfwyxi"
+# 🎁 카카오페이 복채 링크 (추가됨)
+link_kakaopay = "https://qr.kakaopay.com/Ej80O3SQW" 
 # --------------------------------------------------------------------------
 
 st.set_page_config(page_title=page_title, page_icon="🔮", layout="centered")
@@ -26,16 +28,15 @@ with st.form("fortune_form"):
     st.write("### 📜 사주 정보를 입력하세요")
     name = st.text_input("이름 (실명)", placeholder="예: 홍길동")
     
-    # [수정된 부분] 날짜 범위 설정 (1950년 ~ 오늘)
-    min_date = datetime.date(1950, 1, 1) # 시작일: 1950년 1월 1일
-    max_date = datetime.date.today()     # 종료일: 오늘
-    default_date = datetime.date(1995, 1, 1) # 기본 선택일: 1995년 (사용자 편의)
+    min_date = datetime.date(1950, 1, 1)
+    max_date = datetime.date.today()
+    default_date = datetime.date(1995, 1, 1)
     
     birth_date = st.date_input(
         "생년월일", 
-        value=default_date, # 처음에 보여질 날짜
-        min_value=min_date, # 선택 가능한 가장 옛날 날짜
-        max_value=max_date  # 선택 가능한 가장 최신 날짜
+        value=default_date,
+        min_value=min_date,
+        max_value=max_date
     )
     
     gender = st.radio("성별", ("남성", "여성"))
@@ -43,7 +44,7 @@ with st.form("fortune_form"):
     st.write("")
     submitted = st.form_submit_button("2026년 운세 확인하기 (클릭)", type="primary", use_container_width=True)
 
-# 2. 운세 로직 (해시 함수 사용)
+# 2. 운세 로직
 def get_fortune_index(name, date):
     unique_string = name + str(date)
     hash_obj = hashlib.md5(unique_string.encode())
@@ -128,3 +129,18 @@ if submitted:
         with col2:
             st.link_button("에겐 vs 테토, 내 연애 스타일은?", link_dating_app, use_container_width=True)
             st.caption("▲ 나도 모르는 내 연애성향 확인하기")
+
+        # ------------------------------------------------------------------
+        # 💰 [새로 추가된 복채 구역]
+        # ------------------------------------------------------------------
+        st.write("")
+        st.write("")
+        st.write("---")
+        st.markdown("<h3 style='text-align: center;'>🧧 신령님께 드리는 소액 복채</h3>", unsafe_allow_status=True)
+        st.markdown("<p style='text-align: center; color: gray;'>운세가 맘에 드셨나요? <br> 주말 반납하고 앱 만든 직장인에게 카페인을 선물해주세요! ☕</p>", unsafe_allow_status=True)
+        
+        # 중앙 정렬을 위한 컬럼 배치
+        _, btn_col, _ = st.columns([1, 2, 1])
+        with btn_col:
+            st.link_button("🍬 복채 500원 보내기 (카카오페이)", link_kakaopay, use_container_width=True)
+            st.caption("<p style='text-align: center;'>복채를 내면 2026년 운이 +100% 상승합니다 (아마도..)</p>", unsafe_allow_status=True)
